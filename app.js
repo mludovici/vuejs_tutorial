@@ -83,7 +83,14 @@ new Vue({
     el: "#conditionals",
     data: {
         error: false,
-        success: false
+        success: false,
+        someArray: ['Ryu', 'Tekken', 'Ash', 'Zero', 
+        'Superman', 'SubZero', 'Swampthing'],
+        objArray: [
+            {name: "DFG", location: "Saarbrücken", age: 40},
+            {name: "Harvard", location: "California", age: 30},
+            {name: "Baumschule", location: "Abu Dhabi", age: 40}
+        ]
     },
     methods: {
 
@@ -91,4 +98,61 @@ new Vue({
     computed: {
 
     }
-})
+});
+
+new Vue({
+    el: '#game',
+    data: {
+        health: 100,
+        ended: false
+    },
+    methods: {
+        punch: function() {
+            this.health -=10;
+            if (this.health <= 0) {
+                this.ended = true;
+            }
+        },
+        restart: function() {
+            this.health = 100;
+            this.ended = false;
+        }
+    },
+    computed: {
+
+    }
+});
+
+var one = new Vue({
+    el: '#vue-app-one',
+    data: {
+        title: 'Vue app One',
+    },
+    methods: {
+
+    },
+    computed: {
+        greet: function() {
+            return "Hello from app one :)"
+        }
+    }
+});
+
+var two = new Vue({
+    el: '#vue-app-two',
+    data: {
+        title: 'Vue app Two',
+    },
+    methods: {
+        changeTitle: function() {
+            one.title = "Title has changed!"
+        }
+    },
+    computed: {
+        greet: function() {
+            return "This is app2 speaking to you :)"
+        }
+    }
+});
+
+two.title= "Changed from outside";

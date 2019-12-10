@@ -59,6 +59,47 @@
         <button @click="error = !error">Toggle error</button>
         <button @click="success = !success">Toggle success</button>
         <p v-if="error" v-bind:style="{color: 'red'}">There is an error!</p>
+        <p v-else-if="success" v-bind:style="{color: 'green'}">SUCCESS!</p>
+        <p v-show="error">There was an error...</p>
+        <p v-show="success">This is a success!</p>
+
+        <h2>Looping through arrays:</h2>
+        <ul>
+            <li v-for="(character,index) in objArray">
+                {{character.name}} on index: {{index}}
+            </li>
+        </ul>
+        <template v-for="(person,index) in someArray">
+            <p>{{index}} : {{ person }}</p>
+        </template>
+        <template v-for="ninja in objArray">
+            <div v-for="(val,key) in ninja">
+                <p>{{key }} - {{val}}</p>
+            </div>
+        </template>
+    </div>
+
+    <div id="game">
+        <div id="bag" v-bind:class="{burst: ended}"></div>
+        <div id="bag-health">
+            <div v-bind:style="{width: health + '%'}"></div>
+        </div>
+        <div id="controls">
+            <button v-on:click="punch" v-show="!ended">Punch</button>
+            <button v-on:click="restart">Restart</button>
+        </div>
+    </div>
+
+    <div id="vue-app-one">
+        <h2>{{title}}</h2>
+        <p>{{greet}}</p>
+    </div>
+    
+    <div id="vue-app-two">
+            <h2>{{title}}</h2>
+            <p>{{greet}}</p>
+            <button v-on:click="changeTitle">Change App one Title</button>
+
     </div>
 </body>
 <script src="app.js"></script>
